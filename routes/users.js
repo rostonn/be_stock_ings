@@ -65,7 +65,6 @@ router.get('/balance',ensureAuthenticated,function(req,res){
 });
 
 router.post('/buy',ensureAuthenticated, function(req,res){
-  //ensureAuthenticated,
   console.log(req.body);
   console.log(req.user);
 
@@ -149,6 +148,7 @@ router.get('/balancehistory', ensureAuthenticated, function(req, res){
     res.json(record);
   })
 });
+
 
 function aggregateTransactions(transArray){
   // when user portfolio is show group portfolio by stock and price is

@@ -22,7 +22,8 @@ passport.use(new GoogleStrategy(
             first_name: user.first_name,
             last_name: user.last_name,
             oauthid: user.oauthid,
-            profile_image_url: user.profile_image_url
+            profile_image_url: user.profile_image_url,
+            current_cash: 10000
           }, 'id').then(function(id) {
             user.id = id[0];
             done(null, user);
@@ -47,7 +48,7 @@ router.get('/google/callback', function(req, res, next) {
           next(err);
         } else {
           console.log('redirecting to client')
-          res.redirect(process.env.CLIENT_HOST+'trade.html');
+          res.redirect(process.env.CLIENT_HOST+'/trade.html');
         }
       });
     } else if (info) {
@@ -78,7 +79,8 @@ function insertUser(profile) {
     first_name: profile._json.name.givenName,
     last_name: profile._json.name.familyName,
     profile_image_url: profile._json.image.url,
-    oauthid: profile._json.id
+    oauthid: profile._json.id,
+    current_cash: 10000
   };
   return user;
 }
